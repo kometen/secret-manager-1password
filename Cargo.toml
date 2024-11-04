@@ -8,7 +8,7 @@ repository = "https://github.com/kometen/secret-manager-1password"
 documentation = "https://github.com/kometen/secret-manager-1password"
 readme = "README.md"
 keywords = ["vault", "security"]
-categories = ["vault"]
+categories = ["config"]
 edition = "2021"
 
 [dependencies]
