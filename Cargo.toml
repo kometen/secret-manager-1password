@@ -1,0 +1,15 @@
+[package]
+name = "secret_manager_1password"
+version = "0.1.0"
+authors = ["Claus Guttesen <kometen@gmail.com>"]
+description = "Retrieve Azure Key Vault URL from 1password"
+license = "MIT"
+repository = "https://github.com/kometen/secret-manager-1password"
+documentation = "https://github.com/kometen/secret-manager-1password"
+readme = "README.md"
+keywords = ["vault", "security"]
+categories = ["vault"]
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0"
