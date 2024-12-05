@@ -1,6 +1,6 @@
 [package]
 name = "secret_manager_1password"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Claus Guttesen <kometen@gmail.com>"]
 description = "Retrieve Azure Key Vault URL from 1password"
 license = "MIT"

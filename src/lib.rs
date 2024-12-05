@@ -19,6 +19,8 @@ impl SecretManager {
     ///
     /// * `key` - Name of the variable with the value of the 1password path
     ///
+    /// If key have suffix `_test` change default Vault-name
+    ///
     /// # Returns
     ///
     /// A Result containing the SecretManager if successful, or an error if the secret
@@ -27,8 +29,8 @@ impl SecretManager {
     /// # Example
     ///
     /// ```
-    /// use rusty_psql::SecretManager;
     /// use anyhow::Result;
+    /// use secret_manager_1password::SecretManager;
     ///
     /// fn example() -> Result<()> {
     ///     let secret_manager = SecretManager::new("AZURE_KEY_VAULT_TEST")?;
@@ -36,7 +38,15 @@ impl SecretManager {
     /// }
     /// ```
     pub fn new(key: &str) -> Result<Self> {
-        let op_path = format!("op://Production/AzureKeyVault{}/credentials/url", key);
+        let vault = if key.ends_with("_test") {
+            "Test"
+        } else {
+            "Production"
+        };
+
+        let clean_key = key.trim_end_matches("_test");
+
+        let op_path = format!("op://{}/AzureKeyVault{}/url", vault, clean_key);
 
         let command = Command::new("op")
             .arg("read")
@@ -92,7 +102,7 @@ mod tests {
             let secret_manager = result.unwrap();
             assert_eq!(secret_manager, "https://foo.bar.baz.net/");
         } else {
-            let result = SecretManager::new("test");
+            let result = SecretManager::new("demo_test");
             assert!(result.is_ok());
             let secret_manager = result.unwrap();
             assert_eq!(secret_manager.url, "https://foo.bar.baz.net/");
