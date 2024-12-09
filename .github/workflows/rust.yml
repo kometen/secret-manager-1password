@@ -8,6 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  AZURE_KEY_VAULT_TEST: ${{ secrets.AZURE_KEY_VAULT_TEST }}
 
 jobs:
   build:
